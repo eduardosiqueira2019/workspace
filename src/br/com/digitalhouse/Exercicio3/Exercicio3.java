@@ -25,13 +25,37 @@ public class Exercicio3 {
         prova3.setDificuldade(10);
         prova3.setEnergiaNecessaria(9);
 
-        System.out.println(prova1.podeRealizar(atleta1));
-        System.out.println(prova2.podeRealizar(atleta1));
-        System.out.println(prova3.podeRealizar(atleta1));
+        if(prova1.podeRealizar(atleta1)){
+            System.out.println(atleta1.getNome() + " dá conta da prova 1.");
+        }else{
+            System.out.println(atleta1.getNome() + " pipocou na prova 1.");
+        }
+        if(prova2.podeRealizar(atleta1)){
+            System.out.println(atleta1.getNome() + " dá conta da prova 2.");
+        }else{
+            System.out.println(atleta1.getNome() + " pipocou na prova 2.");
+        }
+        if(prova3.podeRealizar(atleta1)){
+            System.out.println(atleta1.getNome() + " dá conta da prova 3.");
+        }else{
+            System.out.println(atleta1.getNome() + " pipocou na prova 3.");
+        }
 
-        System.out.println(prova1.podeRealizar(atleta2));
-        System.out.println(prova2.podeRealizar(atleta2));
-        System.out.println(prova3.podeRealizar(atleta2));
+        if(prova1.podeRealizar(atleta2)){
+            System.out.println(atleta2.getNome() + " dá conta da prova 1.");
+        }else{
+            System.out.println(atleta2.getNome() + " pipocou na prova 1.");
+        }
+        if(prova2.podeRealizar(atleta2)){
+            System.out.println(atleta2.getNome() + " dá conta da prova 2.");
+        }else{
+            System.out.println(atleta2.getNome() + " pipocou na prova 2.");
+        }
+        if(prova3.podeRealizar(atleta2)){
+            System.out.println(atleta2.getNome() + " dá conta da prova 3.");
+        }else{
+            System.out.println(atleta2.getNome() + " pipocou na prova 3.");
+        }
 
     }
 }
