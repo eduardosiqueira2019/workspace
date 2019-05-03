@@ -9,6 +9,7 @@ public class Principal {
         List<Aluno> listaA = new ArrayList<>();
 
         DigitalHouseManager digital = new DigitalHouseManager();
+        DigitalHouseManager digital2 = new DigitalHouseManager();
 
         Aluno eduardo = new Aluno("Eduardo","Siqueira",11);
         Aluno paulo = new Aluno("Paulo","Silva",22);
@@ -24,7 +25,6 @@ public class Principal {
         listaA.add(maria);
 
         digital.setListaDeAlunos(listaA);
-
 
         //registrar 2 professores de cada tipo
         digital.registrarProfessorTitular("Tairo","Roberto",1,"Java");
@@ -44,7 +44,8 @@ public class Principal {
         digital.matricularAluno(11,20001);
         digital.matricularAluno(22,20001);
 
-        digital.excluirCurso(20002);
+        //digital.excluirCurso(20002);
+
         //matricular 3 alunos no curso Android;
         digital.matricularAluno(44,20002);
         digital.matricularAluno(55,20002);

@@ -29,10 +29,11 @@ public class DigitalHouseManager {
 
 
     public void excluirCurso(Integer codigoCurso){
-        for (int i = 0; i <= listaDeCursos.size(); i++) {
+        for (int i = 0; i <= listaDeCursos.size()-1; i++) {
 
             if (listaDeCursos.get(i).getCodigoCurso().toString().equals(codigoCurso.toString())) {
                 listaDeCursos.remove(i);
+                System.out.println("Curso excluido com sucesso.");
                 return;
             }
         }
@@ -41,21 +42,27 @@ public class DigitalHouseManager {
 
 
     public void registrarProfessorAdjunto(String nome, String sobrenome, Integer codigoProfessor, Integer quantidadeDeHoras) {
+        Professor professordhA = new ProfessorAdjunto(0);
         professordhA.setNome(nome);
         professordhA.setSobreNome(sobrenome);
         professordhA.setCodigoProfessor(codigoProfessor);
         professordhA.setTempoDeCasa(0);
+        professordhA.setCursoLecionado(0);
+        professoresDH.add(professordhA);
     }
 
     public void registrarProfessorTitular(String nome, String sobrenome, Integer codigoProfessor, String especialidade) {
+        Professor professordhT = new ProfessorTitular("");
         professordhT.setNome(nome);
         professordhT.setSobreNome(sobrenome);
         professordhT.setCodigoProfessor(codigoProfessor);
         professordhT.setTempoDeCasa(0);
+        professordhT.setCursoLecionado(0);
+        professoresDH.add(professordhT);
     }
 
     public void excluirProfessor(Integer codigoProfessor) {
-        for (Integer i = 0; i < professoresDH.size(); i++) {
+        for (Integer i = 0; i < professoresDH.size()-1; i++) {
             if (professoresDH.get(i).getCodigoProfessor().equals(codigoProfessor)) {
                 professoresDH.remove(i);
             }
@@ -64,20 +71,22 @@ public class DigitalHouseManager {
 
 
     public void matricularAluno(Integer codigoAluno, Integer codigoCurso) {
-        for (int i = 0; i <= listaDeCursos.size(); i++) {
+        int achouCurso = 0;
+        for (int i = 0; i <= listaDeCursos.size()-1; i++) {
 
             if (listaDeCursos.get(i).getCodigoCurso().toString().equals(codigoCurso.toString())) {
-                for (int j = 0; j <= listaDeAlunos.size(); j++) {
+                achouCurso = 1;
+                for (int j = 0; j <= listaDeAlunos.size()-1; j++) {
                     if (listaDeAlunos.get(j).getCodigoAluno() == codigoAluno) {
                         Aluno oAluno = new Aluno(listaDeAlunos.get(j).getNome(), listaDeAlunos.get(j).getSobreNome(), listaDeAlunos.get(j).getCodigoAluno());
                         Curso oCurso = new Curso(listaDeCursos.get(i).getNome(), listaDeCursos.get(i).getCodigoCurso(), listaDeCursos.get(i).getQtdeMaxAlunos());
                         if (oCurso.adicionarUmAluno(oAluno)) {
                             Matricula matricula = new Matricula(oAluno, oCurso);
                             listaDematriculas.add(matricula);
-                            System.out.println("Matrícula realizada com sucesso.");
+                            System.out.println("Matrícula realizada com sucesso no curso " + codigoCurso + " para " + oAluno.getNome());
                             return;
                         } else {
-                            System.out.println("Não há vagas diponíveis.");
+                            System.out.println("Não há vagas diponíveis para o curso " + codigoCurso);
                             return;
                         }
                     } else {
@@ -93,7 +102,10 @@ public class DigitalHouseManager {
             }
 
         }
-
+        if(achouCurso == 0) {
+            System.out.println("Curso " + codigoCurso + " não encontrado.");
+            return;
+        }
     }
 
 
@@ -120,13 +132,18 @@ public class DigitalHouseManager {
 
 
     public void alocarProfessores(Integer codigoCurso, Integer codigoProfessorTitular, Integer codigoProfessorAdjunto) {
-        if (professoresDH.contains(codigoProfessorTitular)) {
-            professordhT.setCodigoCurso(codigoCurso);
-            professordhT.setCodigoProfessor(codigoProfessorTitular);
+
+        for (int i = 0; i < professoresDH.size()-1; i++) {
+            if (professoresDH.get(i).getCodigoProfessor().equals(codigoProfessorTitular)) {
+                professordhT.setCodigoProfessor(codigoProfessorTitular);
+                professordhT.setCursoLecionado(codigoCurso);
+            }
         }
-        if (professoresDH.contains(codigoProfessorAdjunto)) {
-            professordhA.setCodigoCurso(codigoCurso);
-            professordhA.setCodigoProfessor(codigoProfessorAdjunto);
+        for (int i = 0; i < professoresDH.size()-1; i++) {
+            if (professoresDH.get(i).getCodigoProfessor().equals(codigoProfessorTitular)) {
+                professordhA.setCodigoProfessor(codigoProfessorAdjunto);
+                professordhA.setCodigoProfessor(codigoCurso);
+            }
         }
 
     }

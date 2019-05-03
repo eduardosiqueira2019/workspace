@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="digitalhouse">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/DigitalException.jar!/br/com/digitalhouse" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
